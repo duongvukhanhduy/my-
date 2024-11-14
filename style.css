@@ -1,0 +1,222 @@
+/* Thêm vào phần chứa khung cá */
+body {
+  position: relative;
+  height: 100vh; /* Chiều cao toàn màn hình */
+  margin: 0; /* Loại bỏ margin mặc định */
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+  background-color: #00d5ff; /* Màu nền ngoài khung cá (thay đổi màu nền này) */
+}
+
+/* Hồ cá */
+.aquarium {
+  position: relative;
+  width: 900px;
+  height: 600px;
+  background-image: url("image/nền.html.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+  border-radius: 25px;
+  border: 5px solid #0055a4;
+  margin-bottom: 20px; /* Khoảng cách giữa hồ cá và nút thêm cá */
+}
+
+/* Nút thêm cá */
+.add-fish {
+  width: 200px; /* Kích thước nút */
+  height: 50px; /* Chiều cao của nút */
+  background-color: #0055a4; /* Màu nền của nút */
+  color: white; /* Màu chữ */
+  border: none;
+  border-radius: 25px; /* Bo tròn góc */
+  font-size: 18px; /* Kích thước chữ */
+  cursor: pointer; /* Con trỏ chuột khi hover */
+  transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền khi hover */
+}
+
+/* Hiệu ứng hover cho nút */
+.add-fish:hover {
+  background-color: #003b6f; /* Màu nền khi hover */
+}
+
+/* Hiệu ứng hover cho nút */
+.add-fish:hover {
+  background-color: #003b6f; /* Màu nền khi hover */
+}
+
+/* Đối tượng chung */
+.object {
+  position: absolute;
+  width: auto;
+  height: auto;
+  user-select: none; /* Không thể chọn đối tượng */
+}
+
+/* Phóng to tất cả đối tượng */
+.diver1,
+.diver2,
+.diver3,
+.fish_group1,
+.fish_group2,
+.fish1,
+.fish2,
+.new-fish,
+.bubble {
+  width: 200px; /* Phóng to gấp 3 lần */
+  height: auto;
+}
+
+/* Bong bóng khí */
+.bubble {
+  animation: bubbleUp 5s ease-in infinite; /* Hiệu ứng bay lên */
+  width: 40px; /* Đặt kích thước bong bóng lớn hơn */
+  bottom: 0; /* Đặt vị trí bong bóng ở đáy hồ */
+  left: 50%; /* Đặt bong bóng ở vị trí ngẫu nhiên */
+  transform: translateX(-50%); /* Căn giữa bong bóng */
+}
+
+/* Hiệu ứng di chuyển bong bóng lên */
+@keyframes bubbleUp {
+  0% {
+    transform: translateY(0) translateX(-50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(-50%);
+    opacity: 0; /* Bong bóng mờ dần */
+  }
+}
+
+/* Các đối tượng khác (giữ nguyên các hiệu ứng di chuyển) */
+.diver1,
+.diver2,
+.diver3 {
+  animation-name: moveUpDown;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* Tọa độ ban đầu cho từng người */
+.diver1 {
+  left: 50px;
+  top: 400px;
+  animation-duration: 3s; /* Người 1 di chuyển nhanh */
+}
+
+.diver2 {
+  left: 400px;
+  top: 400px;
+  animation-duration: 6s; /* Người 2 di chuyển vừa */
+}
+
+.diver3 {
+  left: 700px;
+  top: 400px;
+  animation-duration: 5s; /* Người 3 di chuyển chậm */
+}
+
+/* 2 đàn cá di chuyển qua lại */
+.fish_group1,
+.fish_group2 {
+  animation-name: moveLeftRight;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Tọa độ ban đầu cho từng đàn cá */
+.fish_group1 {
+  left: -100px; /* Bắt đầu ngoài màn hình bên trái */
+  top: 300px;
+  animation-duration: 6s; /* Đàn cá 1 di chuyển nhanh */
+}
+
+.fish_group2 {
+  left: 900px; /* Bắt đầu ngoài màn hình bên phải */
+  top: 50px;
+  animation-duration: 10s; /* Đàn cá 2 di chuyển chậm */
+}
+
+/* 2 con cá di chuyển chéo */
+.fish1,
+.fish2 {
+  animation-name: moveDiagonal;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* Tọa độ ban đầu cho từng con cá */
+.fish1 {
+  left: 100px;
+  top: 100px;
+  animation-duration: 5s; /* Cá 1 di chuyển vừa */
+}
+
+.fish2 {
+  left: 600px;
+  top: 50px;
+  animation-duration: 7s; /* Cá 2 di chuyển chậm hơn */
+}
+
+/* Hiệu ứng di chuyển */
+
+/* Người di chuyển lên xuống */
+@keyframes moveUpDown {
+  0% {
+    top: 100px;
+  }
+  100% {
+    top: 300px;
+  }
+}
+
+/* Cá di chuyển qua lại */
+@keyframes moveLeftRight {
+  0% {
+    left: -100px;
+  }
+  100% {
+    left: 900px;
+  }
+}
+
+/* Cá di chuyển chéo */
+@keyframes moveDiagonal {
+  0% {
+    left: 100px;
+    top: 50px;
+  }
+  100% {
+    left: 700px;
+    top: 400px;
+  }
+}
+
+/* Cá thêm vào di chuyển ngẫu nhiên */
+.new-fish {
+  animation: swimRandom 10s infinite linear;
+}
+
+/* Hiệu ứng di chuyển ngẫu nhiên cho cá mới */
+@keyframes swimRandom {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(100px, 50px);
+  }
+  50% {
+    transform: translate(-150px, 100px);
+  }
+  75% {
+    transform: translate(50px, -80px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
